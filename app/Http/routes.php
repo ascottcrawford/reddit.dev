@@ -38,19 +38,28 @@
 //     return view('my-first-view'), $data;
 // });
 
-Route::get('/rolldice/{guessnumber}', function($guessnumber)
-{
-    $dicenumber = rand(1, 6);
+// Route::get('/rolldice/{guessnumber}', function($guessnumber)
+// {
+//     $dicenumber = rand(1, 6);
 
-    $data = [
-    	'dicenumber' => $dicenumber,
-    	'guessnumber' => $guessnumber
-    ];
+//     $data = [
+//     	'dicenumber' => $dicenumber,
+//     	'guessnumber' => $guessnumber
+//     ];
 
-    // multiple values
-    return view('roll-dice')->with($data);
+//     // multiple values
+//     return view('roll-dice')->with($data);
   
-});
+// });
+
+Route::get('/uppercase/{name}', function($name)
+	{
+	   	$upper = strtoupper($name);
+	   	$data = [
+	   		'upper' => $upper
+	   	];
+	   	return view('uppercase')->with($data);
+	});
 
 // Route::get('/uppercase/{name}', function($name)
 // {
