@@ -52,25 +52,46 @@
   
 // });
 
-Route::get('/uppercase/{name}', function($name)
-	{
-	   	$upper = strtoupper($name);
-	   	$data = [
-	   		'upper' => $upper
-	   	];
-	   	return view('uppercase')->with($data);
-	});
+Route::get('/', 'HomeController@showWelcome');
 
-// Route::get('/uppercase/{name}', function($name)
+Route::get('/rolldice/{guess}', 'HomeController@rollDice');
+
+Route::get('/uppercase/{name}', 'HomeController@upper');
+
+// Route::get('/rolldice/{guessnumber}', function($guessnumber)
 // {
-//     if ($name == "Chris") {
-//         return redirect('/');
-//     }
-//     $uppercase = strtoupper($name);
-//     return $uppercase;
+//     $dicenumber = rand(1, 6);
+
+//     $data = [
+//     	'dicenumber' => $dicenumber,
+//     	'guessnumber' => $guessnumber
+//     ];
+
+//     // multiple values
+//     return view('roll-dice')->with($data);
+  
 // });
 
-// Route::get('/add/{number}', function($number)
-// {
-//     return $number + 1;
-// });
+
+// ', function($name)
+// 	{
+// 	   	$upper = strtoupper($name);
+// 	   	$data = [
+// 	   		'upper' => $upper
+// 	   	];
+// 	   	return view('uppercase')->with($data);
+// 	});
+
+// // Route::get('/uppercase/{name}', function($name)
+// // {
+// //     if ($name == "Chris") {
+// //         return redirect('/');
+// //     }
+// //     $uppercase = strtoupper($name);
+// //     return $uppercase;
+// // });
+
+// // Route::get('/add/{number}', function($number)
+// // {
+// //     return $number + 1;
+// // });
