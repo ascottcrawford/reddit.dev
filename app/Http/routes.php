@@ -15,15 +15,29 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/sayhello/{name1}/{name2}', function ($name1, $name2) {
-	return 'Hello Kings ' . $name1 . " and " . $name2;
-});
+// Route::get('/sayhello/{name1}/{name2}', function ($name1, $name2) {
+// 	return 'Hello Kings ' . $name1 . " and " . $name2;
+// });
 
-Route::get('/sayhello/{name}', function($name)
+// Route::get('/sayhello/{name}', function($name)
+// {
+//     if ($name == "Chris") {
+//         return redirect('/');
+//     }
+
+//     return "Hello, $name!";
+// });
+
+Route::get('/uppercase/{name}', function($name)
 {
     if ($name == "Chris") {
         return redirect('/');
     }
+    $uppercase = strtoupper($name);
+    return $uppercase;
+});
 
-    return "Hello, $name!";
+Route::get('/add/{number}', function($number)
+{
+    return $number + 1;
 });
