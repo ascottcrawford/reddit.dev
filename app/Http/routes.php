@@ -56,7 +56,9 @@ Route::get('/', 'HomeController@showWelcome');
 
 Route::get('/rolldice/{guess}', 'HomeController@rollDice');
 
-Route::get('/uppercase/{name}', 'HomeController@upper');
+Route::get('/uppercase/{word?}', 'HomeController@uppercase');
+
+Route::get('/increment/{number?}', 'HomeController@increment');
 
 // Route::get('/rolldice/{guessnumber}', function($guessnumber)
 // {

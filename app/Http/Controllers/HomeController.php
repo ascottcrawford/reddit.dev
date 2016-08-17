@@ -27,12 +27,16 @@ class HomeController extends Controller
         return view('roll-dice')->with($data);
     }
 
-    public function upper($name)
+    public function uppercase($word = 'Crazy')
      {
-         $upper = strtoupper($name);
-         $data = [
-             'upper' => $upper
-         ];
-         return view('uppercase')->with($data);
+         
+         return view('uppercase')->with('word', $uppercase);
      }
+
+     public function increment($number = 0)
+     {
+        $number += 1;
+        return view('increment')->with('number', $number);
+     }
+
 }
