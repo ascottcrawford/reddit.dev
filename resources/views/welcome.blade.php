@@ -40,6 +40,17 @@
             <div class="content">
                 <div class="title">Laravel 5</div>
             </div>
+            <div class="row">
+                <form method="POST" action="/users">
+                    {!! csrf_field() !!}
+                    Name: <input type="text" name="name" value="{{ old('name') }}">
+                    E-mail: <input type="text" name="email" value="{{ old('email') }}">
+                    Website: <input type="text" name="website" value="{{ old('website') }}">
+                    Comment: <textarea name="comment" rows="5" cols="40" value="{{ old('comment') }}">
+                    </textarea>
+                    <input type="submit">
+                </form>
+            </div>
         </div>
     </body>
 </html>

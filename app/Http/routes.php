@@ -60,6 +60,26 @@ Route::get('/uppercase/{word?}', 'HomeController@uppercase');
 
 Route::get('/increment/{number?}', 'HomeController@increment');
 
+Route::resource('posts', 'PostsController');
+// Route::get('/posts', 'PostsController@index');
+// Route::get('/posts/create', 'PostsController@create');
+// Route::post('/posts', 'PostsController@store');
+// Route::get('/posts/{post}', 'PostsController@show');
+// Route::get('/posts/{post}/edit', 'PostsController@edit');
+// Route::put('/posts/{post}', 'PostsController@update');
+// Route::delete('/posts/{post}', 'PostsController@destroy');
+
+
+Route::post('/test-route', function(Request $request) {
+	dd($request->all());
+});
+
+// Route::post('/create', function(Request $request) {
+// 	dd($request->all());
+// });
+
+
+
 // Route::get('/rolldice/{guessnumber}', function($guessnumber)
 // {
 //     $dicenumber = rand(1, 6);
