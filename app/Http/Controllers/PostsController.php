@@ -37,7 +37,7 @@ class PostsController extends Controller
      */
     public function store(Request $request)
     {
-        return "store a new post";
+        return back()->withInput();;
     }
 
     /**

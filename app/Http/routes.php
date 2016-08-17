@@ -70,9 +70,9 @@ Route::resource('posts', 'PostsController');
 // Route::delete('/posts/{post}', 'PostsController@destroy');
 
 
-Route::post('/test-route', function(Request $request) {
-	dd($request->all());
-});
+// Route::post('/test-route', function(Request $request) {
+// 	dd($request->all());
+// });
 
 // Route::post('/create', function(Request $request) {
 // 	dd($request->all());
