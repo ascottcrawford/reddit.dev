@@ -19,7 +19,7 @@
                         @if($errors->has('url'))
     			    		{!! $errors->first('url', '<span class="help-block alert alert-warning">:message</span>') !!}
     					@endif
-                        <input type="submit">
+                        <input type="submit" class="button">
             </form>
         </div>    
     </div>

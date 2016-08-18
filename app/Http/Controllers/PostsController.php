@@ -17,7 +17,7 @@ class PostsController extends Controller
      */
     public function index()
     {
-        $posts = Post::all();
+        $posts = Post::paginate(4);
         return view("posts.index")->with("posts", $posts);
     }
 
@@ -42,7 +42,7 @@ class PostsController extends Controller
         $rules = [
             'title' => 'required|max:100',
             'content' => 'required',
-            'url' => 'required'
+            'url' => 'required|url'
         ];
         $this->validate($request, $rules);
 
