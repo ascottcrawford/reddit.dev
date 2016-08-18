@@ -53,6 +53,8 @@ class PostsController extends Controller
         $post->url = $request->url;
         $post->content = $request->content;
         $post->save();
+
+        $request->session()->flash('message', 'Your Post was Saved!');
         return redirect()->action("PostsController@create");
     }
 
@@ -89,11 +91,14 @@ class PostsController extends Controller
      */
     public function update(Request $request, $id)
     {
+        
         $post = Post::find($id);
         $post->title = $request->title;
         $post->content = $request->content;
         $post->url = $request->url;
         $post->save();
+
+        $request->session()->flash('message', 'Your Post was updated!');
         return redirect()->action("PostsController@index");
     }
 
@@ -105,6 +110,7 @@ class PostsController extends Controller
      */
     public function destroy($id)
     {
+        $request->session()->flash('message', 'Your Post was deleted!');
         // $post = Post::find($id);
         // $post->delete();
     }
