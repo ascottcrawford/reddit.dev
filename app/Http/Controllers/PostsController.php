@@ -38,10 +38,11 @@ class PostsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
+    {        
         $rules = [
             'title' => 'required|max:100',
-            'url'   => 'required'
+            'content' => 'required',
+            'url' => 'required'
         ];
         $this->validate($request, $rules);
 
@@ -52,7 +53,7 @@ class PostsController extends Controller
         $post->url = $request->url;
         $post->content = $request->content;
         $post->save();
-        return redirect()->action("PostsController@index");
+        return redirect()->action("PostsController@create");
     }
 
     /**

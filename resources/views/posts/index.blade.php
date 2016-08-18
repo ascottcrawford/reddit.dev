@@ -11,9 +11,11 @@
 		</thead>
 		<tbody>
     	@foreach($posts as $post) 
-    		<tr>{{ $post->title }}</tr>
-    		<tr>{{ $post->url }}</tr>
-    		<tr>{{ $post->content }}</tr>
+    		<tr>
+    		<td>{{ $post->title }}</td>
+    		<td>{{ $post->url }}</td>
+    		<td>{{ $post->content }}</td>
+    		</tr>
     	@endforeach
  		</tbody>
  	</table>
