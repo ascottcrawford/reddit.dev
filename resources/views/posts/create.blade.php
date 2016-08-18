@@ -10,4 +10,12 @@
                     <input type="submit">
         </form>
     </div>
+		<!-- check if a field has an error -->
+		$errors->has('title')
+
+		<!-- get an error by field name -->
+		$errors->first('title')
+
+		<!-- get an error by field name formatted within html -->
+		$errors->first('title', '<span class="help-block">:message</span>')
 @stop

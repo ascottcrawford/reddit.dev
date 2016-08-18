@@ -39,13 +39,20 @@ class PostsController extends Controller
      */
     public function store(Request $request)
     {
+        $rules = [
+            'title' => 'required|max:100',
+            'url'   => 'required'
+        ];
+        $this->validate($request, $rules);
+
+
         $post = new Post();
         $post->created_by = 1;
-        $post->title = $request->title;
-        $post->content = $request->content;
+        $post->title = $request->input('title');
         $post->url = $request->url;
+        $post->content = $request->content;
         $post->save();
-        return back()->withInput();
+        return redirect()->action("PostsController@index");
     }
 
     /**
@@ -56,8 +63,8 @@ class PostsController extends Controller
      */
     public function show($id)
     {
-        $posts = Post::find($id);
-        return view("posts.show")->with("posts", $posts);
+        $post = Post::find($id);
+        return view("posts.show")->with('post', $post);
         
     }
 
@@ -82,8 +89,11 @@ class PostsController extends Controller
     public function update(Request $request, $id)
     {
         $post = Post::find($id);
-        $post->title = $request->input('title');
+        $post->title = $request->title;
+        $post->content = $request->content;
+        $post->url = $request->url;
         $post->save();
+        return redirect()->action("PostsController@index");
     }
 
     /**

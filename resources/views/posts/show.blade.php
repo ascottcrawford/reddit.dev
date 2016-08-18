@@ -1,8 +1,13 @@
 @extends('layouts.master')
 
 @section('content')
-    <div class="posts">
-    		<p> {{ $posts->title }}</p>    
-    </div>
+	<dl>
+			<dt>Title</dt>
+			<dd>{{ $post->title }}</dd>
+			<dt>url</dt>
+			<dd>{{ $post->url }}</dd>
+			<dt>Content</dt>
+			<dd>{{ $post->content }}</dd>
+    </dl>
 
 @stop

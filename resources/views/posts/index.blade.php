@@ -1,10 +1,20 @@
 @extends('layouts.master')
 
 @section('content')
-    <div class="posts">
+	<table class="table table-bordered table-stripped table-hover">
+		<thead>
+			<tr>
+				<td>Title</td>
+				<td>URL</td>
+				<td>Content</td>
+			</tr>
+		</thead>
+		<tbody>
     	@foreach($posts as $post) 
-    		<a href="{{ action('PostsController@show', $post->id) }}">Post #{{ $post->title }}</a>
+    		<tr>{{ $post->title }}</tr>
+    		<tr>{{ $post->url }}</tr>
+    		<tr>{{ $post->content }}</tr>
     	@endforeach
-        
-    </div>
+ 		</tbody>
+ 	</table>
 @stop
