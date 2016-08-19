@@ -91,7 +91,7 @@ class PostsController extends Controller
             Log::info("Post with ID $id cannot be found");
             abort(404);
         }
-        return "show a form for editing a post";
+        return view("posts.edit")->with('post', $post);
     }
 
     /**
@@ -130,7 +130,8 @@ class PostsController extends Controller
             Log::info("Post with ID $id cannot be found");
             abort(404);
         }
-        $request->session()->flash('message', 'Your Post was deleted!');
+        session()->flash('message', 'Your Post was deleted!');
         $post->delete();
+        return redirect()->action("PostsController@index");
     }
 }

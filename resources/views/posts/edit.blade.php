@@ -2,16 +2,24 @@
 
 @section('content')
     <div class="container-fluid">
+        <dl>
+            <dt>Title</dt>
+            <dd>{{ $post->title }}</dd>
+            <dt>url</dt>
+            <dd>{{ $post->url }}</dd>
+            <dt>Content</dt>
+            <dd>{{ $post->content }}</dd>
+         </dl>
         <div class="row">
-            <form method="POST" action="{{ action('PostsController@store') }}">
+            <form method="POST" action="{{ action('PostsController@update', $post->id) }}">
                         {!! csrf_field() !!}
+                        {{ method_field("PUT")}}
                         Title: <input type="text" name="title" value="{{ old('title') }}">
                         @if($errors->has('title'))
     			    		{!! $errors->first('title', '<span class="help-block alert alert-warning">:message</span>') !!}
     					@endif
 
-                        Content: <textarea rows="4" cols="50" type="text" name="content" value="{{ old('content') }}">
-                        </textarea>
+                        Content: <input type="text" name="content" value="{{ old('content') }}">
                         @if($errors->has('content'))
     			    		{!! $errors->first('content', '<span class="help-block alert alert-warning">:message</span>') !!}
     					@endif
