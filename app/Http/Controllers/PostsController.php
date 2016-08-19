@@ -29,6 +29,7 @@ class PostsController extends Controller
      */
     public function create()
     {
+        
         return view("posts.create");
     }
 
@@ -54,12 +55,9 @@ class PostsController extends Controller
         $post->url = $request->url;
         $post->content = $request->content;
         $post->save();
-
+        Log::info($request->all());
         $request->session()->flash('message', 'Your Post was Saved!');
-        if(!$post) {
-            Log::info("Post with ID $id cannot be found");
-            abort(404);
-        }
+
         return redirect()->action("PostsController@create");
     }
 
@@ -88,6 +86,11 @@ class PostsController extends Controller
      */
     public function edit($id)
     {
+        $post = Post::find($id);
+        if(!$post) {
+            Log::info("Post with ID $id cannot be found");
+            abort(404);
+        }
         return "show a form for editing a post";
     }
 
@@ -102,11 +105,14 @@ class PostsController extends Controller
     {
         
         $post = Post::find($id);
+        if(!$post) {
+            Log::info("Post with ID $id cannot be found");
+            abort(404);
+        }
         $post->title = $request->title;
         $post->content = $request->content;
         $post->url = $request->url;
         $post->save();
-
         $request->session()->flash('message', 'Your Post was updated!');
         return redirect()->action("PostsController@index");
     }
@@ -119,8 +125,12 @@ class PostsController extends Controller
      */
     public function destroy($id)
     {
+        $post = Post::find($id);
+        if(!$post) {
+            Log::info("Post with ID $id cannot be found");
+            abort(404);
+        }
         $request->session()->flash('message', 'Your Post was deleted!');
-        // $post = Post::find($id);
-        // $post->delete();
+        $post->delete();
     }
 }

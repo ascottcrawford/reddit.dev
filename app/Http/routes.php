@@ -11,12 +11,6 @@ use App\Models\Post;
 |
 */
 
-
-Route::get('/test',function(){
-
-	return "test";
-});
-
 Route::resource('posts', 'PostsController');
 // Route::get('/posts', 'PostsController@index');
 // Route::get('/posts/create', 'PostsController@create');
