@@ -3,10 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use App\Post;
+use App\Models\Post;
 
 class PostsController extends Controller
 {
@@ -55,6 +56,10 @@ class PostsController extends Controller
         $post->save();
 
         $request->session()->flash('message', 'Your Post was Saved!');
+        if(!$post) {
+            Log::info("Post with ID $id cannot be found");
+            abort(404);
+        }
         return redirect()->action("PostsController@create");
     }
 
@@ -67,6 +72,10 @@ class PostsController extends Controller
     public function show($id)
     {
         $post = Post::find($id);
+        if(!$post) {
+            Log::info("Post with ID $id cannot be found");
+            abort(404);
+        }
         return view("posts.show")->with('post', $post);
         
     }
