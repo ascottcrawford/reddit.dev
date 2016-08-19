@@ -1,6 +1,7 @@
 @extends('layouts.master')
 
 @section('content')
+    <h1>Create A Post</h1>
     <div class="container-fluid">
         <div class="row">
             <form method="POST" action="{{ action('PostsController@store') }}">

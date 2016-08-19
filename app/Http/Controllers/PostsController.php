@@ -28,8 +28,7 @@ class PostsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {
-        
+    {     
         return view("posts.create");
     }
 
@@ -41,24 +40,17 @@ class PostsController extends Controller
      */
     public function store(Request $request)
     {        
-        $rules = [
-            'title' => 'required|max:100',
-            'content' => 'required',
-            'url' => 'required|url'
-        ];
-        $this->validate($request, $rules);
-
-
+        $this->validate($request, Post::$rules);
         $post = new Post();
         $post->created_by = 1;
-        $post->title = $request->input('title');
-        $post->url = $request->url;
-        $post->content = $request->content;
-        $post->save();
+        // $post->title = $request->input('title');
+        // $post->url = $request->url;
+        // $post->content = $request->content;
+        // $post->save();
+        // $request->session()->flash('message', 'Your Post was Saved!');
+        // return redirect()->action("PostsController@index");
         Log::info($request->all());
-        $request->session()->flash('message', 'Your Post was Saved!');
-
-        return redirect()->action("PostsController@create");
+        return $this->validateAndSave($post, $request);
     }
 
     /**
@@ -86,7 +78,7 @@ class PostsController extends Controller
      */
     public function edit($id)
     {
-        $post = Post::find($id);
+        $post = Post::findorFail($id);
         if(!$post) {
             Log::info("Post with ID $id cannot be found");
             abort(404);
@@ -103,18 +95,19 @@ class PostsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        
-        $post = Post::find($id);
+        $post = Post::findorFail($id);
         if(!$post) {
             Log::info("Post with ID $id cannot be found");
             abort(404);
         }
-        $post->title = $request->title;
-        $post->content = $request->content;
-        $post->url = $request->url;
-        $post->save();
-        $request->session()->flash('message', 'Your Post was updated!');
-        return redirect()->action("PostsController@index");
+        return $this->validateAndSave($post, $request);
+
+        // $post->title = $request->title;
+        // $post->content = $request->content;
+        // $post->url = $request->url;
+        // $post->save();
+        // $request->session()->flash('message', 'Your Post was updated!');
+        // return redirect()->action("PostsController@index");
     }
 
     /**
@@ -125,7 +118,7 @@ class PostsController extends Controller
      */
     public function destroy($id)
     {
-        $post = Post::find($id);
+        $post = Post::findorFail($id);
         if(!$post) {
             Log::info("Post with ID $id cannot be found");
             abort(404);
@@ -134,4 +127,21 @@ class PostsController extends Controller
         $post->delete();
         return redirect()->action("PostsController@index");
     }
+
+    private function validateAndSave(Post $post, Request $request){
+        $request->session()->flash('ERROR_MESSAGE', 'Post was not saved successfully');
+        $this->validate($request, Post::$rules);
+        $request->session()->forget('ERROR_MESSAGE');
+        // $post = new Post();
+        // $post->created_by = 1;
+        $post->title = $request->input('title');
+        $post->url = $request->url;
+        $post->content = $request->content;
+        $post->save();
+        Log::info($request->all());
+        $request->session()->flash('message', 'Your Post was Saved!');
+
+        return redirect()->action("PostsController@index");
+    }
+
 }

@@ -19,7 +19,7 @@
     	@foreach($posts as $post) 
     		<tr>
     		<td>{{ $post->title }}</td>
-    		<td>{{ $post->url }}</td>
+    		<td><a href="{{ $post->content }}">{{ $post->url }}</a></td>
     		<td>{{ $post->content }}</td>
     		<td>{{ $post->created_at->setTimezone('America/Chicago')->format('l, F jS Y @ h:i:s A') }}</td>
     		<td><form method="post" action="{{ action('PostsController@destroy', $post->id)}}">

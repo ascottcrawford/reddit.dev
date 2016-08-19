@@ -1,7 +1,9 @@
 @extends('layouts.master')
 
 @section('content')
+    <h1>Edit Post</h1>
     <div class="container-fluid">
+        
         <dl>
             <dt>Title</dt>
             <dd>{{ $post->title }}</dd>
