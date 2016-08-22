@@ -1,7 +1,20 @@
 @extends('layouts.master')
 
 @section('content')
-	<h1>Reddit.Dev</h1>
+	<nav class="navbar">
+	  <div class="container-fluid">
+	    <div class="row">  
+	        <div class="col-xs-4">
+	          <h3><p class="nav-title"><a href="/posts">Reddit.Dev</a></p></h3>
+	        </div>
+	        <div class="col-xs-8"> 
+	           <a class="navbar-right btn btn-default" href="{{ action('Auth\AuthController@getLogin')}}">Login</a>
+	           <a class="navbar-right btn btn-default" href="{{ action('Auth\AuthController@getRegister')}}">Signup</a>
+	           <a class="navbar-right btn btn-default"  href="{{ action('Auth\AuthController@getLogout')}}">Logout</a>
+	        </div> 
+	    </div>
+	  </div>
+	</nav>
 	<h3><a href="{{ action('PostsController@create') }}">Create New Post</a></h3>
 	<table class="table table-bordered table-stripped table-hover">
 		<thead>

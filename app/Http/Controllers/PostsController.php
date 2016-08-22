@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 
 use App\Http\Requests;
@@ -16,9 +17,15 @@ class PostsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function index()
     {
         $posts = Post::paginate(4);
+        $loggedInUser = Auth::user();
         return view("posts.index")->with("posts", $posts);
     }
 
@@ -42,7 +49,7 @@ class PostsController extends Controller
     {        
         $this->validate($request, Post::$rules);
         $post = new Post();
-        $post->created_by = 1;
+        $post->created_by = Auth::user()->id;
         // $post->title = $request->input('title');
         // $post->url = $request->url;
         // $post->content = $request->content;
