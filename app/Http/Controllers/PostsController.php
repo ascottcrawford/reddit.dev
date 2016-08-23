@@ -22,11 +22,27 @@ class PostsController extends Controller
         $this->middleware('auth');
     }
 
-    public function index()
+    public function index(Request $request)
     {
-        $posts = Post::with("author")->paginate(4);
-        $loggedInUser = Auth::user();
+        $searchTerm = $request->input('search');
+        if (is_null($searchTerm)) {
+            $posts = Post::orderBy('created_at', 'DESC')->paginate(10);
+        } else {
+            $posts = Post::search($searchTerm)->orderBy('created_at', 'DESC')->paginate(10);
+        }
+        // with("title")->paginate(4);
+        // $loggedInUser = Auth::user();
+        // Post::("table")->orderBy('created_at')->get();
+        // DB::table('posts')->orderBy('created_at')->get();
         return view("posts.index")->with("posts", $posts);
+        // select * from posts WHERE id > 3 ORDER BY name 
+        // $builder = App\User::where('id', '>', 3)->orderBy('name');
+        // $builder = App\User::where('name', '=', 'luis')->orderBy('name');
+        // $builder->first();
+        // select * from useres wehre id between 3 and 20
+        // $builder = APP\User::whereBetween('id', 3, 20)->get();
+        // whereIn or whereNotIn 
+        // DB::table('posts')->orderBy('created_at')->take(5)->skip(5)->get();
     }
 
     /**
@@ -150,5 +166,6 @@ class PostsController extends Controller
 
         return redirect()->action("PostsController@index");
     }
+
 
 }

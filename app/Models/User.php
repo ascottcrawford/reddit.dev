@@ -43,4 +43,23 @@ class User extends Model implements AuthenticatableContract,
         //select * from posts Where created_by = $user->id
         return $this->hasMany(Post::class, 'created_by');
     }
+
+    public static function count($userId) 
+    {
+        return DB::table('posts')->where('created_by', $userId)->count();
+        // return Post::where('created_by', $userId)->count();
+    }
+
+    //  public static function search($searchTerm) 
+    // {
+    //     // return DB::table('posts')->where('created_by', $userId)->count();
+    //     return static::where('name', 'LIKE', "%{$searchTerm}%")->orWhere('email', 'LIKE', "%{$searchTerm}%");
+    // }
+
+    // public static function search(Request $request) 
+    // {
+    //     // return DB::table('posts')->where('created_by', $userId)->count();
+    //     $searchByUser = App\Model\Post::where('user', '=', $user);
+    //     return Post::where('user', '=', $user)->search();
+    // }
 }

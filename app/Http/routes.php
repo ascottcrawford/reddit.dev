@@ -12,6 +12,7 @@ use App\Models\Post;
 */
 Route::get('/', 'PostsController@index');
 Route::resource('posts', 'PostsController');
+
 // Route::get('/posts', 'PostsController@index');
 // Route::get('/posts/create', 'PostsController@create');
 // Route::post('/posts', 'PostsController@store');
@@ -19,6 +20,9 @@ Route::resource('posts', 'PostsController');
 // Route::get('/posts/{post}/edit', 'PostsController@edit');
 // Route::put('/posts/{post}', 'PostsController@update');
 // Route::delete('/posts/{post}', 'PostsController@destroy');
+
+// Query Controller (may not need since functions are in post and user)
+// Route::resource('queries', 'QueryController');
 
 // Authentication routes...
 Route::get('auth/login', 'Auth\AuthController@getLogin');

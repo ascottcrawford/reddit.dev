@@ -18,15 +18,15 @@ class Post extends Model
     // 	return $this->belongsTo('App/User', 'created_by', 'id');
     // }
 
-    public function getTitleAttribute($value)
-    {
-    	return ucwords($value);
-    }
+    // public function getTitleAttribute($value)
+    // {
+    // 	return ucwords($value);
+    // }
 
-      public function setTitleAttribute($value)
-    {
-    	$this->attributes['title'] = strtolower($value);
-    }
+    //   public function setTitleAttribute($value)
+    // {
+    // 	$this->attributes['title'] = strtolower($value);
+    // }
  //    public function __get($name) {
  //    	if (condition)
 	// {
@@ -37,4 +37,10 @@ class Post extends Model
 		//select * from users WHERE id = $post->created-by
 		return $this->belongsTo(User::class, 'created_by');
 	}
+
+	 public static function search($searchTerm) 
+    {
+        // return DB::table('posts')->where('created_by', $userId)->count();
+        return static::where('title', 'LIKE', "%{$searchTerm}%")->orWhere('content', 'LIKE', "%{$searchTerm}%");
+    }
 }
