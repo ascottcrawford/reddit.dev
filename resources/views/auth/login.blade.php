@@ -1,4 +1,8 @@
 @extends('layouts.master')
+@section('css')
+body {
+	padding: 100px
+}
 
 @section('content')
 	<nav class="navbar">

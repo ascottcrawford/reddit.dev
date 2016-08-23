@@ -1,5 +1,7 @@
 @extends('layouts.master')
-
+@section('css')
+	<link href="main.css" />
+@stop
 @section('content')
 	<nav class="navbar">
 	  <div class="container-fluid">
