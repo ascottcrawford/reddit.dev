@@ -20,6 +20,7 @@ class CreateTablePosts extends Migration
             $table->integer('created_by')->unsigned();
             $table->foreign('created_by')->references('id')->on('users');
             $table->timestamps();
+
         });
     }
 
@@ -32,4 +33,11 @@ class CreateTablePosts extends Migration
     {
         Schema::drop('posts');
     }
+
+    // public function down()
+    //     Schema::table('posts', function($table)
+    //     {
+    //        $table->dropForeign(['created_by']);
+    //     });
+
 }

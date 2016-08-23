@@ -32,4 +32,9 @@ class Post extends Model
 	// {
 	// 	return $this->getTitleAttribute($this->attributes[$name]);
 	// }   
+	public function author() 
+	{
+		//select * from users WHERE id = $post->created-by
+		return $this->belongsTo(User::class, 'created_by');
+	}
 }
