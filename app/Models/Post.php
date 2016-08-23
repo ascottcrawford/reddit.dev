@@ -17,4 +17,19 @@ class Post extends Model
     // {
     // 	return $this->belongsTo('App/User', 'created_by', 'id');
     // }
+
+    public function getTitleAttribute($value)
+    {
+    	return ucwords($value);
+    }
+
+      public function setTitleAttribute($value)
+    {
+    	$this->attributes['title'] = strtolower($value);
+    }
+ //    public function __get($name) {
+ //    	if (condition)
+	// {
+	// 	return $this->getTitleAttribute($this->attributes[$name]);
+	// }   
 }
