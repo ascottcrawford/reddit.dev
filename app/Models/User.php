@@ -53,7 +53,7 @@ class User extends Model implements AuthenticatableContract,
     //  public static function search($searchTerm) 
     // {
     //     // return DB::table('posts')->where('created_by', $userId)->count();
-    //     return static::where('name', 'LIKE', "%{$searchTerm}%")->orWhere('email', 'LIKE', "%{$searchTerm}%");
+    //     return static::where('name', 'LIKE', "%{$searchTerm}%")->orWhere('created_by', 'LIKE', "%{$searchTerm}%");
     // }
 
     // public static function search(Request $request) 

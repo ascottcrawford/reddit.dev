@@ -41,6 +41,18 @@ class Post extends Model
 	 public static function search($searchTerm) 
     {
         // return DB::table('posts')->where('created_by', $userId)->count();
-        return static::where('title', 'LIKE', "%{$searchTerm}%")->orWhere('content', 'LIKE', "%{$searchTerm}%");
+        return Post::select(
+	        	'posts.id',
+	        	'posts.title',
+	        	'posts.url',
+	        	'posts.content',
+	        	'posts.created_at',
+	        	'users.name'
+        	)
+        	->join('users', 'users.id', '=', 'posts.created_by')
+        	->where('title', 'LIKE', "%{$searchTerm}%")
+        	->orWhere('content', 'LIKE', "%{$searchTerm}%")
+        	->orWhere('users.name', 'LIKE', "%{$searchTerm}%")
+    	;
     }
 }
