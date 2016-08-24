@@ -53,6 +53,7 @@ class Post extends Model
         	->where('title', 'LIKE', "%{$searchTerm}%")
         	->orWhere('content', 'LIKE', "%{$searchTerm}%")
         	->orWhere('users.name', 'LIKE', "%{$searchTerm}%")
+        	->paginate(4)
     	;
     }
 }

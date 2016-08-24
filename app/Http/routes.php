@@ -12,6 +12,8 @@ use App\Models\Post;
 */
 Route::get('/', 'PostsController@index');
 Route::resource('posts', 'PostsController');
+Route::post('/', 'PostsController@search');
+
 
 // Route::get('/posts', 'PostsController@index');
 // Route::get('/posts/create', 'PostsController@create');

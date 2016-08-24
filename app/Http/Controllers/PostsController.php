@@ -168,5 +168,11 @@ class PostsController extends Controller
         return redirect()->action("PostsController@index");
     }
 
+    public function search(Request $request)
+    {
+        // $searchTerm = $request->input('search');
+        $posts = Post::search($request->input('search'));
+        return view("posts.index")->with("posts", $posts);
+    }
 
 }

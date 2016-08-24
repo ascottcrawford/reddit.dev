@@ -6,12 +6,22 @@
 	<nav class="navbar">
 	  <div class="container-fluid">
 	    <div class="row">  
-	        <div class="col-xs-5">
+	        <div class="col-xs-3">
 	          <h3><p class="nav-title"><a href="/posts">Reddit.Dev</a></p></h3>
 	        </div>
-	        <div class="col-xs-3">
-	        	<form>
-	        		<h4>Search Bar</h4>
+	        <div class="col-xs-5">
+	        	<form method="post" action="{{ action('PostsController@search') }}" role="search">	
+	        		{{ csrf_field() }}
+					<div class="form-group">
+							<input
+									type="text"
+									class="form-control"
+									name="search"
+									id="search"
+									placeholder="Search Title, Content, Created By">
+							@include('forms.error', ['field' => 'users.name'], ['field' => 'posts.title'], ['field' => 'posts.content'])		
+					<button type="submit" class="btn btn-primary">Search</button>
+					</div>
 	        	</form>
 	        </div>
 	        <div class="col-xs-4"> 
