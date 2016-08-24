@@ -26,9 +26,9 @@ class PostsController extends Controller
     {
         $searchTerm = $request->input('search');
         if (is_null($searchTerm)) {
-            $posts = Post::orderBy('posts.created_at', 'DESC')->paginate(10);
+            $posts = Post::orderBy('posts.created_at', 'DESC')->paginate(5);
         } else {
-            $posts = Post::search($searchTerm)->orderBy('posts.created_at', 'DESC')->paginate(10);
+            $posts = Post::search($searchTerm)->orderBy('posts.created_at', 'DESC')->paginate(5);
         }
         //dd($posts);
         // with("title")->paginate(4);
