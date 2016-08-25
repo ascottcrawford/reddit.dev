@@ -57,31 +57,31 @@ class Post extends Model
     	;
     }
 
-    public function votes ()
-    {
-    	return $this->hasMany(Vote::class)
-    }
+    // public function votes ()
+    // {
+    // 	return $this->hasMany(Vote::class)
+    // }
 
-    public function upvotes()
-    {
-    	return $this->votes()->where('vote', '=', 1);
-    }
+    // public function upvotes()
+    // {
+    // 	return $this->votes()->where('vote', '=', 1);
+    // }
 
-    public function downvotes()
-    {
-    	return $this->votes()->where('vote', '=', 0);
-    }
+    // public function downvotes()
+    // {
+    // 	return $this->votes()->where('vote', '=', 0);
+    // }
 
-    public function voteScore()
-    {
-    	$upvotes = $this->upvotes()->count();
-    	$downvotes = $this->downvotes()->count();
-    	return $upvotes - $downvotes;
-    }
+    // public function voteScore()
+    // {
+    // 	$upvotes = $this->upvotes()->count();
+    // 	$downvotes = $this->downvotes()->count();
+    // 	return $upvotes - $downvotes;
+    // }
 
-    public function userVote(user $user) 
-    {
+    // public function userVote(user $user) 
+    // {
 
-    }
+    // }
 
 }

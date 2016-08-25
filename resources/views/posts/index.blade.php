@@ -7,9 +7,9 @@
 	  <div class="container-fluid">
 	    <div class="row">  
 	        <div class="col-xs-3">
-	          <h3><p class="nav-title"><a href="/posts">Reddit.Dev</a></p></h3>
+	          <h2><p class="nav-title"><em><strong><a href="/posts">Reddit.Dev</a></strong></em></p></h2>
 	        </div>
-	        <div class="col-xs-5">
+	        <div class="col-xs-4">
 	        	<form method="post" action="{{ action('PostsController@search') }}" role="search">	
 	        		{{ csrf_field() }}
 					<div class="form-group">
@@ -24,11 +24,12 @@
 					</div>
 	        	</form>
 	        </div>
-	        <div class="col-xs-4"> 
-	           <a class="navbar-right btn btn-default" href="{{ action('Auth\AuthController@getLogin')}}">Login</a>
-	           <a class="navbar-right btn btn-default" href="{{ action('Auth\AuthController@getRegister')}}">Signup</a>
-	           <a class="navbar-right btn btn-default"  href="{{ action('Auth\AuthController@getLogout')}}">Logout</a>
+	        <div class="col-xs-3 navbar-right"> 
+	           <a class="btn btn-default" href="{{ action('Auth\AuthController@getLogin')}}">Login</a>
+	           <a class="btn btn-default" href="{{ action('Auth\AuthController@getRegister')}}">Signup</a>
+	           <a class="btn btn-default"  href="{{ action('Auth\AuthController@getLogout')}}">Logout</a>
 	        </div> 
+	        <div class="col-xs-2 navbar-right" style="text-align:right"> {{{ isset(Auth::user()->name) ? Auth::user()->name : Auth::user()->email }}} <h6>is logged in</h6></div>
 	    </div>
 	  </div>
 	</nav>
@@ -43,7 +44,7 @@
 				<td>Created By</td>
 				<td>Delete</td>
 				<td>Edit</td>
-				<td>Update</td>
+				<td>Show</td>
 			</tr>
 		</thead>
 		<tbody>
